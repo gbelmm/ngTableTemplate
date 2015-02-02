@@ -1,0 +1,17 @@
+
+<div class="btn-group" ng-repeat="btndata in data" ng-show="btndata.order">
+    <button
+            type="button" ng-click="ghOrder(btndata.id)" class="btn btn-default ">
+        <span  style="float: left;margin-right: 5px;opacity: 0.2 " class="fa "  ng-class="{'fa-sort':ghfiltername!=btndata.id,'fa-sort-desc':ghfiltername==btndata.id && ghrev,'fa-sort-asc':ghfiltername==btndata.id && !ghrev}">&nbsp;</span>
+        {{btndata.name|capitalize}}
+    </button>
+    <button ns-popover
+            ns-popover-template="popover-data.html"
+            ns-popover-trigger="click"
+
+            ns-popover-theme="ns-popover-list-theme" class="btn btn-default  "><span
+            class="caret"></span>
+
+    </button>
+
+</div>

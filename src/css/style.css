@@ -1,0 +1,76 @@
+.ghboth{
+    background: url("img/sort_both.png") no-repeat scroll right center rgba(0, 0, 0, 0);
+    background-position:0px;
+}
+.ghasc{
+    background: url("img/sort_asc.png") no-repeat scroll right center rgba(0, 0, 0, 0);
+    background-position:0px;
+}
+.ghdesc{
+    background: url("img/sort_desc.png") no-repeat scroll right center rgba(0, 0, 0, 0);
+    background-position:0px;
+}
+.ngtemplate-number{
+    text-align: right;margin-right: 5px;
+}
+.ngtemplate-percentage{
+    text-align: right;margin-right: 5px;
+}
+.ngtemplate-date{
+    text-align: center;margin-right: 5px;
+}
+.ngtemplate-html{
+    text-align: center;margin-right: 5px;
+}
+.ui-grid-column-menu-button {
+    position: absolute;
+    right: 1px;
+    top: 0;
+}
+
+.animate-repeat {
+    line-height:40px;
+    list-style:none;
+    box-sizing:border-box;
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+    -webkit-transition:all linear 0.3s;
+    transition:all linear 0.3s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+    opacity:0;
+
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+    opacity:1;
+   ;
+}
+#nested-table{
+    margin-bottom: 0px;
+}
+#expanded-data {
+    margin-left: 20px;
+}
+.ns-popover-list-theme{
+    z-index: 1400;
+    max-width: 230px
+}
+a.read-more, a.read-less {
+    cursor: pointer;
+    color: blue;
+}
+span.more-text {
+    display: none;
+}
+span.more-text.show {
+    display: inline !important
+}

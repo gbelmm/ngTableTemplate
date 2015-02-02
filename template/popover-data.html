@@ -1,0 +1,10 @@
+<ul class="list-group">
+    <li class="list-group-item" ng-switch on="btndata.type">
+        <input type="text" ng-model="btndata.search" ng-switch-default/>
+
+
+    </li>
+    <li class="list-group-item"><input type="checkbox" ng-change="selectAll(btndata.id,btndata.all)" ng-model="btndata.all"/>(Seleccionar Todos)</li>
+    <li class="list-group-item" ng-repeat="d in btndata.items|filter:btndata.search" ><input type="checkbox" ng-model="d.state" ng-change="ngFilterCheck(btndata.id,d.value,d.state)"/> {{d.value}}</li>
+
+</ul>

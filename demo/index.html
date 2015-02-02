@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css"/>
+</head>
+<body ng-app="demo" ng-controller="demoCtrl">
+
+<script type="text/ng-template" id="template1.html">
+
+    <button class="btn btn-primary btn-lg" ng-click="action.hola1()" >Top</button>
+
+
+    <div class="bs-callout bs-callout-info animate-repeat" ng-repeat="value in data">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-8">
+                    <h4>{{value.plan}}</h4>
+                    <i class="icon-calendar"> </i><strong> Inicio</strong> {{value.inicio}} |
+                    <i class="icon-calendar"> </i><strong> Fin</strong> {{value.termino}}
+                    <hr class="hr">
+
+                    <p read-more content="{{value.descripcion}}">
+
+                    </p>
+                    <span class="label label-primary">{{value.area}}</span>
+                    <span class="label label-primary">{{value.proyecto}}</span>
+                    <span class="label label-primary">{{value.contrato}}</span>
+                    <span class="label label-primary">{{value.responsable}}</span>
+
+                </div>
+                <div class="col-md-4">
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel bg-warning">
+                                    <div class="panel-body align-center">
+                                        <h2>{{value.progreso}} </h2>
+
+                                        <p class="mb0 text-muted">Cumplimiento</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="panel bg-danger">
+                                    <div class="panel-body align-center">
+                                        <h2>100</h2>
+
+                                        <p class="mb0 text-muted">Actividades Pendientes</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="panel bg-success">
+                                    <div class="panel-body align-center">
+                                        <h2>30</h2>
+
+                                        <p class="mb0 text-muted">Acciones Pendientes</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</script>
+
+
+<div class="btn-group" role="group" aria-label="...">
+    <button type="button" ng-click="tipo='table'" class="btn btn-default">Tabular</button>
+    <button type="button" ng-click="tipo='template1'" class="btn btn-default">Vista Resumen</button>
+    <button type="button" ng-click="tipo='tree'" class="btn btn-default">Resumen Tree</button>
+    <button type="button" ng-click="tipo='pivot'" class="btn btn-default">¿WTF?</button>
+
+
+</div>
+
+<div class="container-fluid">
+
+    <div class="col-lg-12">
+
+        <ng-template-table
+             icon-expand="glyphicon glyphicon-plus"
+             icon-collapse="glyphicon glyphicon-minus"
+             icon-leaf="glyphicon glyphicon-file"
+             type="tipo"
+             model="data"
+             column="column"
+             order="true"
+             search="true"
+             paginate="true"
+             numperpage="5"
+             action="hola"
+         >
+
+        </ng-template-table>
+    </div>
+
+</div>
+
+<script src="../../bower_components/angularjs/angular.js"></script>
+<script src="../../bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="../../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="../bower_components/jquery/jquery.min.js"></script>
+<script src="../bower_components/jqueryui/jquery-ui.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="style.css"/>
+<script src="../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="../bower_components/nsPopover/src/nsPopover.js"></script>
+<link rel="stylesheet" href="../bower_components/nsPopover/build/nsPopover.css"/>
+<script src="../bower_components/angular-filter/dist/angular-filter.min.js"></script>
+<script src="../../bower_components/sparkline/dist/jquery.sparkline.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="../bower_components/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="../bower_components/smalot-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+<link rel="stylesheet" href="../bower_components/bootstrap-popover-x/css/bootstrap-popover-x.min.css"/>
+<script src="../bower_components/bootstrap-popover-x/js/bootstrap-popover-x.js"></script>
+
+<script src="../dist/ngTemplateTable.js"></script>
+<link rel="stylesheet" href="../dist/ngTemplateTable.min.css"/>
+<script>
+    google.load("visualization", "1", {packages:["corechart", "charteditor"]});
+</script>
+
+<script src="//localhost:35729/livereload.js"></script>
+
+<script src="demoCtrl.js"></script>
+
+</body>
+</html>
