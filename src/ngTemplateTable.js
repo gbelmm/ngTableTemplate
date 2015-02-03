@@ -140,7 +140,7 @@ angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'a
                                         colType: 'ngtemplate-' + column[0].colType,
                                         class: column[0].class,
                                         filter: column[0].filter,
-                                        sort: column[0].order,
+                                        sort: column[0].sort,
                                         items: item,
                                         all: true,
                                         type: column[0].type,
