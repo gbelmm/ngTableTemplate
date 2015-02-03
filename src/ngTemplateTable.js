@@ -117,11 +117,11 @@ angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'a
                                 if (column[0] !== undefined) {
 
                                     if (column[0].filter == undefined)
-                                        column[0].filter = true;
+                                        column[0].filter = false;
                                     if (column[0].sort == undefined)
-                                        column[0].sort = true;
+                                        column[0].sort = false;
                                     if (column[0].customHTML == undefined)
-                                        column[0].customHTML = true;
+                                        column[0].customHTML = '';
                                     if (column[0].name == undefined)
                                         column[0].name = i;
                                     if (column[0].type == undefined)
