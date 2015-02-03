@@ -11,6 +11,7 @@
     "nsPopover": "~0.6.7",
     "angular-filter": "~0.5.1",
     "angular-sanitize": "~1.2.28",
-    "smalot-bootstrap-datetimepicker": "~2.3.1"
+    "smalot-bootstrap-datetimepicker": "~2.3.1",
+    "select2": "~3.4"
   }
 }

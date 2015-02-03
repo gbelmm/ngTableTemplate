@@ -1,5 +1,5 @@
 
-<div class="btn-group" ng-repeat="btndata in data" ng-show="btndata.order">
+<div class="btn-group" ng-repeat="btndata in data" ng-show="btndata.sort">
     <button
             type="button" ng-click="ghOrder(btndata.id)" class="btn btn-default ">
         <span  style="float: left;margin-right: 5px;opacity: 0.2 " class="fa "  ng-class="{'fa-sort':ghfiltername!=btndata.id,'fa-sort-desc':ghfiltername==btndata.id && ghrev,'fa-sort-asc':ghfiltername==btndata.id && !ghrev}">&nbsp;</span>

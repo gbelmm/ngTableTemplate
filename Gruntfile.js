@@ -67,7 +67,8 @@ module.exports = function (grunt) {
                     'src/ngTemplateSearchDirective.js',
                     'src/ngTemplateNumberPerPageDirective.js',
                     'src/datetimepicker.js',
-                    'src/popoverDirective.js'
+                    'src/popoverDirective.js',
+                    'src/select2.js'
                 ],
                 dest: 'dist/ngTemplateTable.js'
             }

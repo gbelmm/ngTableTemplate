@@ -9,7 +9,7 @@
  * */
 
 
-angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'angular.filter'])
+angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'angular.filter','ui.select2'])
     .run(['paginationConfig', function (paginationConfig) {
         paginationConfig.firstText = '<<';
         paginationConfig.previousText = '<';
@@ -104,6 +104,7 @@ angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'a
                                     items: item,
                                     filter: true,
                                     sort: true,
+                                    order: true,
                                     all: true,
                                     type: 'text',
                                     customHTML: '',

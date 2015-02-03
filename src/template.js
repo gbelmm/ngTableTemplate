@@ -2,12 +2,12 @@ angular.module('ngTemplateTable').run(['$templateCache', function($templateCache
   'use strict';
 
   $templateCache.put('buttom-filter.html',
-    "<div class=\"btn-group\" ng-repeat=\"btndata in data\" ng-show=\"btndata.order\"><button type=\"button\" ng-click=\"ghOrder(btndata.id)\" class=\"btn btn-default\"><span style=\"float: left;margin-right: 5px;opacity: 0.2\" class=\"fa\" ng-class=\"{'fa-sort':ghfiltername!=btndata.id,'fa-sort-desc':ghfiltername==btndata.id && ghrev,'fa-sort-asc':ghfiltername==btndata.id && !ghrev}\">&nbsp;</span> {{btndata.name|capitalize}}</button> <button ns-popover ns-popover-template=\"popover-data.html\" ns-popover-trigger=\"click\" ns-popover-theme=\"ns-popover-list-theme\" class=\"btn btn-default\"><span class=\"caret\"></span></button></div>"
+    "<div class=\"btn-group\" ng-repeat=\"btndata in data\" ng-show=\"btndata.sort\"><button type=\"button\" ng-click=\"ghOrder(btndata.id)\" class=\"btn btn-default\"><span style=\"float: left;margin-right: 5px;opacity: 0.2\" class=\"fa\" ng-class=\"{'fa-sort':ghfiltername!=btndata.id,'fa-sort-desc':ghfiltername==btndata.id && ghrev,'fa-sort-asc':ghfiltername==btndata.id && !ghrev}\">&nbsp;</span> {{btndata.name|capitalize}}</button> <button ns-popover ns-popover-template=\"popover-data.html\" ns-popover-trigger=\"click\" ns-popover-theme=\"ns-popover-list-theme\" class=\"btn btn-default\"><span class=\"caret\"></span></button></div>"
   );
 
 
   $templateCache.put('numberPerPage.html',
-    "<select ng-show=\"  type!='tree'  && type!='pivot'\" ng-model=\"ghnumperpage\" ng-change=\"ghfilters()\"><option ng-repeat=\"d in ghnumberPerPage\">{{d}}</option></select>"
+    "<select ui-select2 ng-show=\"  type!='tree'  && type!='pivot'\" ng-model=\"ghnumperpage\" ng-change=\"ghfilters()\"><option ng-repeat=\"d in ghnumberPerPage\">{{d}}</option></select>"
   );
 
 
