@@ -1010,9 +1010,7 @@ angular.module('ngTemplateTable')
             }
           }
 
-          if(scope.expandOn){
-            scope.expandingPropertyName = scope.expandOn;
-          }
+
 
             var _firstRow = scope.treeData[0], 
                 _keys = Object.keys(_firstRow);
@@ -1028,6 +1026,12 @@ angular.module('ngTemplateTable')
 
             scope.expandingProperty = expandingProperty;
 
+          if(scope.expandOn){
+            scope.expandingPropertyName = scope.expandOn;
+          } else
+          {
+            scope.expandingPropertyName = scope.expandingProperty;
+          }
 
           if(!attrs.colDefs){
             var _col_defs = [], _firstRow = scope.treeData[0], _unwantedColumn = ['children', 'level', 'expanded', expandingProperty];
