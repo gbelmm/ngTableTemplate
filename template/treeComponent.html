@@ -2,7 +2,7 @@
     <table class="table table-bordered table-striped tree-grid">
     <thead class="">
     <tr>
-        <th class="{{colDefinitions[0].class}}">{{expandingProperty}}</th>
+        <th class="{{colDefinitions[0].class}}">{{expandingPropertyName}}</th>
         <th ng-repeat="col in colDefinitions" ng-if="col.field!==expandingProperty" ng-show="col.inTree" class="{{c.class}}">
 
             {{(col.displayName || col.field)|capitalize}}</th>

@@ -52,22 +52,25 @@
               return;
             }
           }
-          if(attrs.expandOn){            
-            expandingProperty = scope.expandOn;
-            scope.expandingProperty = scope.expandOn;
+
+          if(scope.expandOn){
+            scope.expandingPropertyName = scope.expandOn;
           }
-          else{
+
             var _firstRow = scope.treeData[0], 
                 _keys = Object.keys(_firstRow);
             for(var i =0, len = _keys.length; i<len; i++){
-              if(typeof(_firstRow[_keys[i]])=='string' && _keys[i]!='id'  && _keys[i]!='parentId' && _keys[i]!='icon'){
+              if(typeof(_firstRow[_keys[i]])=='string' && _keys[i]!='id'  && _keys[i]!='parentId' && _keys[i]!='icon' && _keys[i]!='edit' && _keys[i]!='delete'){
+
                 expandingProperty = _keys[i];
                 break;
               }
             }
+
             if(!expandingProperty) expandingProperty = _keys[0];
+
             scope.expandingProperty = expandingProperty;
-          }
+
 
           if(!attrs.colDefs){
             var _col_defs = [], _firstRow = scope.treeData[0], _unwantedColumn = ['children', 'level', 'expanded', expandingProperty];

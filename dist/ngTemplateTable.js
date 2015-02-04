@@ -31,7 +31,8 @@ angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'a
                 order: '=',
                 search: '=',
                 column: '=',
-                actions: '='
+                actions: '=',
+                expandOn: '='
             },
             template: '<ng-include src="getTemplateUrl()"  />',
 
@@ -79,7 +80,7 @@ angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'a
                     scope.ordered_columns = [];
                     var order = 0;
                     for (var i in scope.resp[0]) {
-                        if (i !== '$$hashKey' && i !== 'parentId' && i !== 'children' && i !== 'id' && i !== 'icon') {
+                        if (i !== '$$hashKey' && i !== 'parentId' && i !== 'children' && i !== 'id' && i !== 'icon' && i !== 'edit'  && i !== 'delete') {
 
                             var item = [];
                             var unique = $filter('unique')(scope.resp, i);
@@ -126,7 +127,8 @@ angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'a
                                         column[0].name = i;
                                     if (column[0].type == undefined)
                                         column[0].type = 'text';
-
+                                    if (column[0].i=='edit' || column[0].i=='delete')
+                                        column[0].type=column[0].i;
                                     column[0].order = scope.column.indexOf(column[0]) + 1;
 
                                     scope.ordered_columns.push({
@@ -830,12 +832,12 @@ angular.module('ngTemplateTable')
 
 
   $templateCache.put('tree.html',
-    "<tree-grid tree-data=\"tree\" col-defs=\"ordered_columns\" expand-level=\"2\" iconleaf=\"iconLeaf\" iconexpand=\"iconExpand\" iconcollapse=\"iconCollapse\"></tree-grid>"
+    "<tree-grid expand-on=\"expandOn\" tree-data=\"tree\" col-defs=\"ordered_columns\" expand-level=\"2\" iconleaf=\"iconLeaf\" iconexpand=\"iconExpand\" iconcollapse=\"iconCollapse\"></tree-grid>"
   );
 
 
   $templateCache.put('treeComponent.html',
-    "<div><table class=\"table table-bordered table-striped tree-grid\"><thead class=\"\"><tr><th class=\"{{colDefinitions[0].class}}\">{{expandingProperty}}</th><th ng-repeat=\"col in colDefinitions\" ng-if=\"col.field!==expandingProperty\" ng-show=\"col.inTree\" class=\"{{c.class}}\">{{(col.displayName || col.field)|capitalize}}</th></tr></thead><tbody><tr ng-init=\"value=row.branch;\" ng-repeat=\"row in tree_rows | filter:{visible:true} track by row.branch.uid\" ng-class=\"'level-'+{{ row.level+(row.branch.selected ? ' active':'')}}\" class=\"tree-grid-row\"><td class=\"\"><a style=\"color:#000000\" ng-click=\"user_clicks_branch(row.branch)\"><i ng-class=\"row.tree_icon\" ng-click=\"row.branch.expanded = !row.branch.expanded\" class=\"indented tree-icon\"></i> <i ng-class=\"row.tree_icon_value\" class=\"indented tree-icon\"></i></a><span class=\"indented tree-label\" ng-click=\"user_clicks_branch(row.branch)\">{{row.branch[expandingProperty]}}</span></td><td ng-if=\"col.field!==expandingProperty\" ng-show=\"col.inTree\" ng-repeat=\"col in colDefinitions\" ng-switch on=\"col.type\"><p ng-switch-when=\"text\" class=\"{{col.colType}}\">{{ row.branch[col.id] }} <i ng-show=\"col.colType=='ngtemplate-percentage'\">%</i></p><p ng-switch-when=\"date\" class=\"{{col.colType}}\">{{ row.branch[col.id] }}</p><p ng-switch-when=\"html\" class=\"{{col.colType}}\" ng-type-html=\"\" content=\"row.branch[col.id]\"></p><p ng-switch-when=\"customhtml\" class=\"{{col.colType}}\" ng-type-html=\"\" content=\"col.customHTML\"></p><p ng-switch-when=\"sparkline\" class=\"{{col.colType}}\" sparkline=\"\" data=\"row.branch[col.id]\"></p><p ng-switch-default class=\"{{col.colType}}\" ng-type type=\"col.type\" data=\"row.branch[col.id]\"></p></td></tr></tbody></table></div>"
+    "<div><table class=\"table table-bordered table-striped tree-grid\"><thead class=\"\"><tr><th class=\"{{colDefinitions[0].class}}\">{{expandingPropertyName}}</th><th ng-repeat=\"col in colDefinitions\" ng-if=\"col.field!==expandingProperty\" ng-show=\"col.inTree\" class=\"{{c.class}}\">{{(col.displayName || col.field)|capitalize}}</th></tr></thead><tbody><tr ng-init=\"value=row.branch;\" ng-repeat=\"row in tree_rows | filter:{visible:true} track by row.branch.uid\" ng-class=\"'level-'+{{ row.level+(row.branch.selected ? ' active':'')}}\" class=\"tree-grid-row\"><td class=\"\"><a style=\"color:#000000\" ng-click=\"user_clicks_branch(row.branch)\"><i ng-class=\"row.tree_icon\" ng-click=\"row.branch.expanded = !row.branch.expanded\" class=\"indented tree-icon\"></i> <i ng-class=\"row.tree_icon_value\" class=\"indented tree-icon\"></i></a><span class=\"indented tree-label\" ng-click=\"user_clicks_branch(row.branch)\">{{row.branch[expandingProperty]}}</span></td><td ng-if=\"col.field!==expandingProperty\" ng-show=\"col.inTree\" ng-repeat=\"col in colDefinitions\" ng-switch on=\"col.type\"><p ng-switch-when=\"text\" class=\"{{col.colType}}\">{{ row.branch[col.id] }} <i ng-show=\"col.colType=='ngtemplate-percentage'\">%</i></p><p ng-switch-when=\"date\" class=\"{{col.colType}}\">{{ row.branch[col.id] }}</p><p ng-switch-when=\"html\" class=\"{{col.colType}}\" ng-type-html=\"\" content=\"row.branch[col.id]\"></p><p ng-switch-when=\"customhtml\" class=\"{{col.colType}}\" ng-type-html=\"\" content=\"col.customHTML\"></p><p ng-switch-when=\"sparkline\" class=\"{{col.colType}}\" sparkline=\"\" data=\"row.branch[col.id]\"></p><p ng-switch-default class=\"{{col.colType}}\" ng-type type=\"col.type\" data=\"row.branch[col.id]\"></p></td></tr></tbody></table></div>"
   );
 
 
@@ -1007,22 +1009,25 @@ angular.module('ngTemplateTable')
               return;
             }
           }
-          if(attrs.expandOn){            
-            expandingProperty = scope.expandOn;
-            scope.expandingProperty = scope.expandOn;
+
+          if(scope.expandOn){
+            scope.expandingPropertyName = scope.expandOn;
           }
-          else{
+
             var _firstRow = scope.treeData[0], 
                 _keys = Object.keys(_firstRow);
             for(var i =0, len = _keys.length; i<len; i++){
-              if(typeof(_firstRow[_keys[i]])=='string' && _keys[i]!='id'  && _keys[i]!='parentId' && _keys[i]!='icon'){
+              if(typeof(_firstRow[_keys[i]])=='string' && _keys[i]!='id'  && _keys[i]!='parentId' && _keys[i]!='icon' && _keys[i]!='edit' && _keys[i]!='delete'){
+
                 expandingProperty = _keys[i];
                 break;
               }
             }
+
             if(!expandingProperty) expandingProperty = _keys[0];
+
             scope.expandingProperty = expandingProperty;
-          }
+
 
           if(!attrs.colDefs){
             var _col_defs = [], _firstRow = scope.treeData[0], _unwantedColumn = ['children', 'level', 'expanded', expandingProperty];

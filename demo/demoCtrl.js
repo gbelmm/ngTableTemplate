@@ -310,7 +310,9 @@ angular.module('demo', ['ngTemplateTable'])
             "alcance": "H S E",
             "semaforo": null,
             'parentId': null,
-            id: 1
+            id: 1,
+            edit:'',
+            delete:''
         }, {
             "plan": "Plan Mantenimiento",
             "descripcion": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos  Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la impre",
@@ -325,7 +327,9 @@ angular.module('demo', ['ngTemplateTable'])
             "alcance": "H S E C",
             "semaforo": "#bd362f",
             'parentId': null,
-            id: 2
+            id: 2,
+            edit:'',
+            delete:''
         }, {
             "plan": "asd",
             "descripcion": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos  Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la impre",
@@ -340,7 +344,9 @@ angular.module('demo', ['ngTemplateTable'])
             "alcance": "H",
             "semaforo": null,
             'parentId': 5,
-            id: 3
+            id: 3,
+            edit:'',
+            delete:''
         }, {
 
             "plan": "plan 3",
@@ -356,7 +362,9 @@ angular.module('demo', ['ngTemplateTable'])
             "alcance": "H",
             "semaforo": "#bd362f",
             'parentId': 2,
-            id: 4
+            id: 4,
+            edit:'',
+            delete:''
         }, {
 
             "plan": "plan depasd",
@@ -372,7 +380,9 @@ angular.module('demo', ['ngTemplateTable'])
             "alcance": " S",
             "semaforo": "#51a351",
             'parentId': 4,
-            id: 5
+            id: 5,
+            edit:'',
+            delete:''
         }]
         $scope.data = datos;
 
