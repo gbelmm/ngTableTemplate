@@ -640,6 +640,7 @@
          Default Renderer for hierarchical table layout
          */
         pivotTableRenderer = function (pivotData, opts) {
+            console.log(pivotData,opts);
             var aggregator, c, colAttrs, colKey, colKeys, defaults, i, j, r, result, rowAttrs, rowKey, rowKeys, spanSize, td, th, totalAggregator, tr, txt, val, x;
             defaults = {
                 localeStrings: {
@@ -832,7 +833,9 @@
             opts = $.extend(defaults, opts);
             result = null;
             try {
+                console.log(input, opts)
                 pivotData = new PivotData(input, opts);
+                console.log('pd',pivotData)
                 try {
                     result = opts.renderer(pivotData, opts.rendererOptions);
                 } catch (_error) {
@@ -1180,6 +1183,7 @@
                             }
                             return true;
                         };
+                        console.log('subopts',subopts)
                         pivotTable.pivot(input, subopts);
                         pivotUIOptions = $.extend(opts, {
                             cols: subopts.cols,

@@ -827,12 +827,12 @@ angular.module('ngTemplateTable')
 
 
   $templateCache.put('table.html',
-    "<table class=\"table table-bordered table-condensed table-striped table-hover\"><thead><tr><th style=\"cursor: pointer\" ng-show=\"c.inTable\" ng-repeat=\"c in ordered_columns|orderBy:'orderColumn'\" class=\"{{c.class}}\"><i style=\"float: left;margin-right: 5px;opacity: 0.2\" class=\"fa\" ng-class=\"{'fa-sort':ghfiltername!=c.id && c.order==true,'fa-sort-desc':ghfiltername==c.id && ghrev  && c.order==true,'fa-sort-asc':ghfiltername==c.id && !ghrev  && c.order==true}\"></i><div style=\"position:relative\" ng-show=\"c.filter==true\"><div ns-popover class=\"ui-grid-column-menu-button\" ns-popover-template=\"popover-data-table.html\" ns-popover-trigger=\"click\" ns-popover-hide-on-click=\"false\" ns-popover-theme=\"ns-popover-tooltip-theme\"><span class=\"caret\"></span></div></div><p ng-click=\"ghOrder(c.id)\" style=\"margin-left: 8px\">{{ c.name|capitalize }}</p></th></tr><tbody><tr ng-repeat=\"value in data\" class=\"animate-repeat\"><td ng-repeat=\"c in ordered_columns|orderBy:'orderColumn'\" ng-show=\"c.inTable\" ng-switch on=\"c.type\"><p ng-switch-when=\"text\" class=\"{{c.colType}}\">{{ value[c.id] }} <i ng-show=\"c.colType=='ngtemplate-percentage'\">%</i></p><p ng-switch-when=\"date\" class=\"{{c.colType}}\">{{ value[c.id]|date:'dd-MM-yyyy HH:mm:ss' }}</p><p ng-switch-when=\"html\" class=\"{{c.colType}}\" ng-type-html=\"\" content=\"value[c.id]\"></p><p ng-switch-when=\"customhtml\" class=\"{{c.colType}}\" ng-type-html=\"\" content=\"c.customHTML\"></p><p ng-switch-when=\"sparkline\" class=\"{{c.colType}}\" sparkline=\"\" data=\"value[c.id]\"></p><p ng-switch-default class=\"{{c.colType}}\" ng-type type=\"c.type\" data=\"value[c.id]\"></p></td></tr></tbody></thead></table>"
+    "<div class=\"table-responsive\"><table class=\"table table-bordered table-condensed table-striped table-hover\"><thead><tr><th style=\"cursor: pointer\" ng-show=\"c.inTable\" ng-repeat=\"c in ordered_columns|orderBy:'orderColumn'\" class=\"{{c.class}}\"><i style=\"float: left;margin-right: 5px;opacity: 0.2\" class=\"fa\" ng-class=\"{'fa-sort':ghfiltername!=c.id && c.order==true,'fa-sort-desc':ghfiltername==c.id && ghrev  && c.order==true,'fa-sort-asc':ghfiltername==c.id && !ghrev  && c.order==true}\"></i><div style=\"position:relative\" ng-show=\"c.filter==true\"><div ns-popover class=\"ui-grid-column-menu-button\" ns-popover-template=\"popover-data-table.html\" ns-popover-trigger=\"click\" ns-popover-hide-on-click=\"false\" ns-popover-theme=\"ns-popover-tooltip-theme\"><span class=\"caret\"></span></div></div><p ng-click=\"ghOrder(c.id)\" style=\"margin-left: 8px\">{{ c.name|capitalize }}</p></th></tr><tbody><tr ng-repeat=\"value in data\" class=\"animate-repeat\"><td ng-repeat=\"c in ordered_columns|orderBy:'orderColumn'\" ng-show=\"c.inTable\" ng-switch on=\"c.type\"><p ng-switch-when=\"text\" class=\"{{c.colType}}\">{{ value[c.id] }} <i ng-show=\"c.colType=='ngtemplate-percentage'\">%</i></p><p ng-switch-when=\"date\" class=\"{{c.colType}}\">{{ value[c.id]|date:'dd-MM-yyyy HH:mm:ss' }}</p><p ng-switch-when=\"html\" class=\"{{c.colType}}\" ng-type-html=\"\" content=\"value[c.id]\"></p><p ng-switch-when=\"customhtml\" class=\"{{c.colType}}\" ng-type-html=\"\" content=\"c.customHTML\"></p><p ng-switch-when=\"sparkline\" class=\"{{c.colType}}\" sparkline=\"\" data=\"value[c.id]\"></p><p ng-switch-default class=\"{{c.colType}}\" ng-type type=\"c.type\" data=\"value[c.id]\"></p></td></tr></tbody></thead></table></div>"
   );
 
 
   $templateCache.put('tree.html',
-    "<tree-grid expand-on=\"expandOn\" tree-data=\"tree\" col-defs=\"ordered_columns\" expand-level=\"2\" iconleaf=\"iconLeaf\" iconexpand=\"iconExpand\" iconcollapse=\"iconCollapse\"></tree-grid>"
+    "<div class=\"table-responsive\"><tree-grid expand-on=\"expandOn\" tree-data=\"tree\" col-defs=\"ordered_columns\" expand-level=\"2\" iconleaf=\"iconLeaf\" iconexpand=\"iconExpand\" iconcollapse=\"iconCollapse\"></tree-grid></div>"
   );
 
 
@@ -2157,6 +2157,7 @@ angular.module('ngTemplateTable')
          Default Renderer for hierarchical table layout
          */
         pivotTableRenderer = function (pivotData, opts) {
+            console.log(pivotData,opts);
             var aggregator, c, colAttrs, colKey, colKeys, defaults, i, j, r, result, rowAttrs, rowKey, rowKeys, spanSize, td, th, totalAggregator, tr, txt, val, x;
             defaults = {
                 localeStrings: {
@@ -2349,7 +2350,9 @@ angular.module('ngTemplateTable')
             opts = $.extend(defaults, opts);
             result = null;
             try {
+                console.log(input, opts)
                 pivotData = new PivotData(input, opts);
+                console.log('pd',pivotData)
                 try {
                     result = opts.renderer(pivotData, opts.rendererOptions);
                 } catch (_error) {
@@ -2697,6 +2700,7 @@ angular.module('ngTemplateTable')
                             }
                             return true;
                         };
+                        console.log('subopts',subopts)
                         pivotTable.pivot(input, subopts);
                         pivotUIOptions = $.extend(opts, {
                             cols: subopts.cols,
