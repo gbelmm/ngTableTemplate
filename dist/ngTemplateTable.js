@@ -1514,7 +1514,10 @@ angular.module('ngTemplateTable')
 
                 });
                 var conf=localStorageService.get('pivot');
-                console.log(conf);
+                if (conf==null){
+                    conf={roww:[],cols:[]};
+
+                }
                 $(elem).pivotUI(scope.data, {
                     renderers: renderers,
                     rendererName: "Table",
