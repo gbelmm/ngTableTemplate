@@ -9,7 +9,7 @@
  * */
 
 
-angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'angular.filter','ui.select2'])
+angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'angular.filter','ui.select2','LocalStorageModule'])
     .run(['paginationConfig', function (paginationConfig) {
         paginationConfig.firstText = '<<';
         paginationConfig.previousText = '<';
@@ -1498,23 +1498,45 @@ angular.module('ngTemplateTable')
 
 
 angular.module('ngTemplateTable')
-    .directive('pivot', function () {
-    return {
-        restrict: 'AE',
-        scope:{
-            data:'='
-        },
-        link: function (scope, elem, attr) {
+    .directive('pivot', function (localStorageService) {
+        return {
+            restrict: 'AE',
+            scope: {
+                data: '='
+            },
+            link: function (scope, elem, attr) {
 
-            var renderers = $.extend($.pivotUtilities.renderers,
-                $.pivotUtilities.gchart_renderers);
-            $(elem).pivotUI(scope.data, {
-                renderers: renderers,
-                rendererName: "Table"
-            })
-        }
-    };
-});
+                var renderers = $.extend($.pivotUtilities.renderers,
+                    $.pivotUtilities.gchart_renderers);
+
+                angular.forEach(scope.data, function (value, key) {
+                    console.log(angular.isString(value))
+
+                });
+                var conf=localStorageService.get('pivot');
+                console.log(conf);
+                $(elem).pivotUI(scope.data, {
+                    renderers: renderers,
+                    rendererName: "Table",
+                    cols:conf.cols,
+                    rows:conf.rows,
+                    onRefresh: function (config) {
+                        var config_copy = JSON.parse(JSON.stringify(config));
+                        //delete some values which are functions
+                        delete config_copy["aggregators"];
+                        delete config_copy["renderers"];
+                        delete config_copy["derivedAttributes"];
+                        //delete some bulky default values
+                        delete config_copy["rendererOptions"];
+                        delete config_copy["localeStrings"];
+                        localStorageService.set('pivot',config_copy)
+                        scope.$apply();
+
+                    }
+                })
+            }
+        };
+    });
 ;(function () {
     var callWithJQuery,
         __indexOf = [].indexOf || function (item) {
@@ -2157,7 +2179,7 @@ angular.module('ngTemplateTable')
          Default Renderer for hierarchical table layout
          */
         pivotTableRenderer = function (pivotData, opts) {
-            console.log(pivotData,opts);
+
             var aggregator, c, colAttrs, colKey, colKeys, defaults, i, j, r, result, rowAttrs, rowKey, rowKeys, spanSize, td, th, totalAggregator, tr, txt, val, x;
             defaults = {
                 localeStrings: {
@@ -2350,9 +2372,9 @@ angular.module('ngTemplateTable')
             opts = $.extend(defaults, opts);
             result = null;
             try {
-                console.log(input, opts)
+
                 pivotData = new PivotData(input, opts);
-                console.log('pd',pivotData)
+
                 try {
                     result = opts.renderer(pivotData, opts.rendererOptions);
                 } catch (_error) {
@@ -2421,7 +2443,8 @@ angular.module('ngTemplateTable')
                     _ref = input[0];
                     _results = [];
                     for (k in _ref) {
-                        if (k !== '$$hashKey' && k !== 'id' && k !== 'parentId') {
+                        if (k !== '$$hashKey' && k !== 'id' && k !== 'parentId' &&  typeof(_ref[k])=='string') {
+
                             if (!__hasProp.call(_ref, k)) continue;
                             _results.push(k);
                         }
@@ -2445,7 +2468,7 @@ angular.module('ngTemplateTable')
                     var v, _base, _results;
                     _results = [];
                     for (k in record) {
-                        if (k !== '$$hashKey' && k !== 'id' && k !== 'parentId') {
+                        if (k !== '$$hashKey' && k !== 'id' && k !== 'parentId' && typeof(record[k])=='string') {
                             if (!__hasProp.call(record, k)) continue;
                             v = record[k];
                             if (!(opts.filter(record))) {
@@ -2700,7 +2723,7 @@ angular.module('ngTemplateTable')
                             }
                             return true;
                         };
-                        console.log('subopts',subopts)
+
                         pivotTable.pivot(input, subopts);
                         pivotUIOptions = $.extend(opts, {
                             cols: subopts.cols,

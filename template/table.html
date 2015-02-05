@@ -29,8 +29,7 @@
         <tr ng-repeat="value in data" class="animate-repeat">
             <td ng-repeat="c in ordered_columns|orderBy:'orderColumn'" ng-show="c.inTable" ng-switch on="c.type">
 
-                <p ng-switch-when="text" class="{{c.colType}}">{{ value[c.id] }} <i
-                        ng-show="c.colType=='ngtemplate-percentage'">%</i></p>
+                <p ng-switch-when="text" class="{{c.colType}}">{{ value[c.id] }} <i ng-show="c.colType=='ngtemplate-percentage'">%</i></p>
 
                 <p ng-switch-when="date" class="{{c.colType}}">{{ value[c.id]|date:'dd-MM-yyyy HH:mm:ss' }} </p>
 
