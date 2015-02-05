@@ -10,7 +10,7 @@
 
 
 angular.module('ngTemplateTable')
-    .directive('pivot', function (localStorageService) {
+    .directive('pivot', ['localStorageService', function (localStorageService) {
         return {
             restrict: 'AE',
             scope: {
@@ -51,4 +51,4 @@ angular.module('ngTemplateTable')
                 })
             }
         };
-    });
+    }]);
