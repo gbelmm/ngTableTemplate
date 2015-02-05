@@ -949,7 +949,7 @@
                 });
                 uiTable = $("<table class='table   table-bordered table-condensed table-striped table-hover' cellpadding='5'>");
                 uiTody=$("<tbody>").appendTo(uiTable);
-                rendererControl = $("<td class='col-md-2'>");
+                rendererControl = $("<td class='col-md-1'>");
                 renderer = $("<select class='pvtRenderer'>").appendTo(rendererControl).bind("change", function () {
                     return refresh();
                 });

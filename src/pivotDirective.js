@@ -18,13 +18,9 @@ angular.module('ngTemplateTable')
             },
             link: function (scope, elem, attr) {
 
-                var renderers = $.extend($.pivotUtilities.renderers,
-                    $.pivotUtilities.gchart_renderers);
+                var renderers = $.extend($.pivotUtilities.renderers );
 
-                angular.forEach(scope.data, function (value, key) {
-                    console.log(angular.isString(value))
 
-                });
                 var conf=localStorageService.get('pivot');
                 if (conf==null){
                     conf={roww:[],cols:[]};

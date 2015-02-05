@@ -1506,13 +1506,9 @@ angular.module('ngTemplateTable')
             },
             link: function (scope, elem, attr) {
 
-                var renderers = $.extend($.pivotUtilities.renderers,
-                    $.pivotUtilities.gchart_renderers);
+                var renderers = $.extend($.pivotUtilities.renderers );
 
-                angular.forEach(scope.data, function (value, key) {
-                    console.log(angular.isString(value))
 
-                });
                 var conf=localStorageService.get('pivot');
                 if (conf==null){
                     conf={roww:[],cols:[]};
@@ -2491,7 +2487,7 @@ angular.module('ngTemplateTable')
                 });
                 uiTable = $("<table class='table   table-bordered table-condensed table-striped table-hover' cellpadding='5'>");
                 uiTody=$("<tbody>").appendTo(uiTable);
-                rendererControl = $("<td class='col-md-2'>");
+                rendererControl = $("<td class='col-md-1'>");
                 renderer = $("<select class='pvtRenderer'>").appendTo(rendererControl).bind("change", function () {
                     return refresh();
                 });
