@@ -810,12 +810,12 @@ angular.module('ngTemplateTable')
 
 
   $templateCache.put('popover-data-tree.html',
-    "<ul class=\"list-group\"><li class=\"list-group-item\"><input type=\"text\" ng-model=\"col.search\"></li><li class=\"list-group-item\"><input type=\"checkbox\" ng-change=\"selectAll(col.id,col.all)\" ng-model=\"col.all\">(Seleccionar Todos)</li><li class=\"list-group-item\" ng-repeat=\"d in col.items|filter:col.search\"><input type=\"checkbox\" ng-model=\"d.state\" ng-change=\"ngFilterCheck(col.id,d.value,d.state)\"> {{d.value}}</li></ul>"
+    "<ul class=\"list-group\"><li class=\"list-group-item2\"><input type=\"text\" ng-model=\"col.search\"></li><li class=\"list-group-item2\"><input type=\"checkbox\" ng-change=\"selectAll(col.id,col.all)\" ng-model=\"col.all\">(Seleccionar Todos)</li><li class=\"list-group-item2\" ng-repeat=\"d in col.items|filter:col.search\"><input type=\"checkbox\" ng-model=\"d.state\" ng-change=\"ngFilterCheck(col.id,d.value,d.state)\"> {{d.value}}</li></ul>"
   );
 
 
   $templateCache.put('popover-data.html',
-    "<ul class=\"list-group\"><li class=\"list-group-item\" ng-switch on=\"btndata.type\"><input type=\"text\" ng-model=\"btndata.search\" ng-switch-default></li><li class=\"list-group-item\"><input type=\"checkbox\" ng-change=\"selectAll(btndata.id,btndata.all)\" ng-model=\"btndata.all\">(Seleccionar Todos)</li><li class=\"list-group-item\" ng-repeat=\"d in btndata.items|filter:btndata.search\"><input type=\"checkbox\" ng-model=\"d.state\" ng-change=\"ngFilterCheck(btndata.id,d.value,d.state)\"> {{d.value}}</li></ul>"
+    "<ul class=\"list-group\"><li class=\"list-group-item\" ng-switch on=\"btndata.type\"><input type=\"text\" ng-model=\"btndata.search\" ng-switch-default></li><li class=\"list-group-item2\"><input type=\"checkbox\" ng-change=\"selectAll(btndata.id,btndata.all)\" ng-model=\"btndata.all\">(Seleccionar Todos)</li><li class=\"list-group-item2\" ng-repeat=\"d in btndata.items|filter:btndata.search\"><input type=\"checkbox\" ng-model=\"d.state\" ng-change=\"ngFilterCheck(btndata.id,d.value,d.state)\"> {{d.value}}</li></ul>"
   );
 
 

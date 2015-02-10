@@ -441,3 +441,11 @@ span.more-text.show {
 .ns-popover-tooltip-theme.ns-popover-bottom-align .ns-popover-tooltip {
 
     margin-bottom: 0; }
+.list-group-item2 {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    display: block;
+    margin-bottom: -1px;
+    padding: 10px 15px;
+    position: relative;
+}
