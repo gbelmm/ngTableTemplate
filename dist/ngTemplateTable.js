@@ -63,6 +63,7 @@ angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'a
                 });
 
 
+
                 scope.iconLeaf = attrs.iconLeaf || "glyphicon glyphicon-file";
                 scope.iconExpand = attrs.iconExpand || "glyphicon glyphicon-menu-down";
                 scope.iconCollapse = attrs.iconCollapse || "glyphicon glyphicon-menu-right";
@@ -118,15 +119,17 @@ angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'a
                                 if (column[0] !== undefined) {
 
                                     if (column[0].filter == undefined)
-                                        column[0].filter = false;
+                                        column[0].filter = true;
                                     if (column[0].sort == undefined)
-                                        column[0].sort = false;
+                                        column[0].sort = true;
                                     if (column[0].customHTML == undefined)
                                         column[0].customHTML = '';
                                     if (column[0].name == undefined)
                                         column[0].name = i;
                                     if (column[0].type == undefined)
                                         column[0].type = 'text';
+                                    if (column[0].inTable== undefined)
+                                        column[0].inTable = true;
                                     if (column[0].i=='edit' || column[0].i=='delete')
                                         column[0].type=column[0].i;
                                     column[0].order = scope.column.indexOf(column[0]) + 1;
@@ -2442,7 +2445,7 @@ angular.module('ngTemplateTable')
                     _ref = input[0];
                     _results = [];
                     for (k in _ref) {
-                        if (k !== '$$hashKey' && k !== 'id' && k !== 'parentId' &&  typeof(_ref[k])=='string') {
+                        if (k !== '$$hashKey' && k !== 'id' && k !== 'parentId' ) {
 
                             if (!__hasProp.call(_ref, k)) continue;
                             _results.push(k);
@@ -2467,7 +2470,7 @@ angular.module('ngTemplateTable')
                     var v, _base, _results;
                     _results = [];
                     for (k in record) {
-                        if (k !== '$$hashKey' && k !== 'id' && k !== 'parentId' && typeof(record[k])=='string') {
+                        if (k !== '$$hashKey' && k !== 'id' && k !== 'parentId' ) {
                             if (!__hasProp.call(record, k)) continue;
                             v = record[k];
                             if (!(opts.filter(record))) {

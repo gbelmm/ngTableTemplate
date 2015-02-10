@@ -10,7 +10,7 @@
 
 <script type="text/ng-template" id="template1.html">
 
-    <button class="btn btn-primary btn-lg" ng-click="action.hola1()" >Top</button>
+
 
 
     <div class="bs-callout bs-callout-info animate-repeat" ng-repeat="value in data">
@@ -22,7 +22,7 @@
                     <i class="icon-calendar"> </i><strong> Fin</strong> {{value.termino}}
                     <hr class="hr">
 
-                    <p read-more content="{{value.descripcion}}">
+                    <p read-more content="{{value.Name}}">
 
                     </p>
                     <span class="label label-primary">{{value.area}}</span>
@@ -77,10 +77,11 @@
 
 
 <div class="btn-group" role="group" aria-label="...">
-    <button type="button" ng-click="tipo='table'" class="btn btn-default">Tabular</button>
-    <button type="button" ng-click="tipo='template1'" class="btn btn-default">Vista Resumen</button>
-    <button type="button" ng-click="tipo='tree'" class="btn btn-default">Resumen Tree</button>
-    <button type="button" ng-click="tipo='pivot'" class="btn btn-default">¿WTF?</button>
+    <button type="button" ng-click="tipo='table'" class="btn btn-default">Tabla</button>
+    <button type="button" ng-click="tipo='tree'" class="btn btn-default">Tree</button>
+    <button type="button" ng-click="tipo='pivot'" class="btn btn-default">Pivot</button>
+    <button type="button" ng-click="tipo='template1'" class="btn btn-default">Plantilla Custom</button>
+    <button type="button"  ng-disabled="true" class="btn btn-default">Gantt</button>
 
 
 </div>
@@ -100,8 +101,6 @@
              search="true"
              paginate="true"
              numperpage="5"
-             action="hola"
-             expand-on="'Planes'"
          >
 
         </ng-template-table>
@@ -114,7 +113,7 @@
 <script src="../../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 <script src="../bower_components/jquery/jquery.min.js"></script>
 <script src="../bower_components/jqueryui/jquery-ui.min.js"></script>
-<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" href="style.css"/>
 <script src="../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
@@ -125,8 +124,6 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script src="../bower_components/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <link rel="stylesheet" href="../bower_components/smalot-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
-<link rel="stylesheet" href="../bower_components/bootstrap-popover-x/css/bootstrap-popover-x.min.css"/>
-<script src="../bower_components/bootstrap-popover-x/js/bootstrap-popover-x.js"></script>
 <script src="../bower_components/select2/select2.min.js"></script>
 <link rel="stylesheet" href="../bower_components/select2/select2.css"/>
 <script src="../bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>

@@ -904,7 +904,7 @@
                     _ref = input[0];
                     _results = [];
                     for (k in _ref) {
-                        if (k !== '$$hashKey' && k !== 'id' && k !== 'parentId' &&  typeof(_ref[k])=='string') {
+                        if (k !== '$$hashKey' && k !== 'id' && k !== 'parentId' ) {
 
                             if (!__hasProp.call(_ref, k)) continue;
                             _results.push(k);
@@ -929,7 +929,7 @@
                     var v, _base, _results;
                     _results = [];
                     for (k in record) {
-                        if (k !== '$$hashKey' && k !== 'id' && k !== 'parentId' && typeof(record[k])=='string') {
+                        if (k !== '$$hashKey' && k !== 'id' && k !== 'parentId' ) {
                             if (!__hasProp.call(record, k)) continue;
                             v = record[k];
                             if (!(opts.filter(record))) {
