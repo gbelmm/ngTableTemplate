@@ -795,7 +795,7 @@ angular.module('ngTemplateTable')
 
 
   $templateCache.put('numberPerPage.html',
-    "<select ui-select2 ng-show=\"  type!='tree'  && type!='pivot'\" ng-model=\"ghnumperpage\" ng-change=\"ghfilters()\"><option ng-repeat=\"d in ghnumberPerPage\">{{d}}</option></select>"
+    "<select class=\"form-control\" ui-select2 ng-show=\"  type!='tree'  && type!='pivot'\" ng-model=\"ghnumperpage\" ng-change=\"ghfilters()\"><option ng-repeat=\"d in ghnumberPerPage\">{{d}}</option></select>"
   );
 
 
