@@ -81,7 +81,7 @@ angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'a
                     scope.ordered_columns = [];
                     var order = 0;
                     for (var i in scope.resp[0]) {
-                        if (i !== '$$hashKey' && i !== 'parentId' && i !== 'children' && i !== 'id' && i !== 'icon' && i !== 'edit'  && i !== 'delete') {
+                        if (i !== '$$hashKey' && i !== 'parentId' && i !== 'children' && i !== 'id' && i !== 'icon' ) {
 
                             var item = [];
                             var unique = $filter('unique')(scope.resp, i);
@@ -130,8 +130,7 @@ angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'a
                                         column[0].type = 'text';
                                     if (column[0].inTable== undefined)
                                         column[0].inTable = true;
-                                    if (column[0].i=='edit' || column[0].i=='delete')
-                                        column[0].type=column[0].i;
+
                                     column[0].order = scope.column.indexOf(column[0]) + 1;
 
                                     scope.ordered_columns.push({
