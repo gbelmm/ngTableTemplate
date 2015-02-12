@@ -234,10 +234,10 @@ angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'a
                 if (scope.search == true) {
 
                     var pag = '<div class="row" >' +
-                        '<div class="col-md-6" ng-template-number-per-page >' +
+                        '<div class="col-md-2" ng-template-number-per-page >' +
 
 
-                        '</div>';
+                        '</div><div class="col-md-4"></div>';
 
 
                     pag = pag + '<div class="col-md-6" ng-template-search ng-show=" type!=\'pivot\'">' +
