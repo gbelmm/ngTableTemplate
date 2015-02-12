@@ -805,7 +805,7 @@ angular.module('ngTemplateTable')
 
 
   $templateCache.put('popover-data-table.html',
-    "<ul class=\"list-group\"><li class=\"list-group-item\" ng-switch on=\"c.type\"><input type=\"text\" ng-model=\"c.search\" ng-switch-default></li><li class=\"list-group-item2\"><input type=\"checkbox\" ng-change=\"selectAll(c.id,c.all)\" ng-model=\"c.all\">(Seleccionar Todos)</li><li class=\"list-group-item2\" ng-repeat=\"d in c.items|filter:c.search\"><input type=\"checkbox\" ng-model=\"d.state\" ng-change=\"ngFilterCheck(c.id,d.value,d.state)\"> {{d.value}}</li></ul>"
+    "<ul class=\"list-group\"><li class=\"list-group-item2\" ng-switch on=\"c.type\"><input type=\"text\" ng-model=\"c.search\" ng-switch-default></li><li class=\"list-group-item2\"><input type=\"checkbox\" ng-change=\"selectAll(c.id,c.all)\" ng-model=\"c.all\">(Seleccionar Todos)</li><li class=\"list-group-item2\" ng-repeat=\"d in c.items|filter:c.search\"><input type=\"checkbox\" ng-model=\"d.state\" ng-change=\"ngFilterCheck(c.id,d.value,d.state)\"> {{d.value}}</li></ul>"
   );
 
 
