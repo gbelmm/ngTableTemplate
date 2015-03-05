@@ -57,7 +57,9 @@ angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'a
                     scope.data = scope.model;
                     var data = angular.copy(scope.data);
 
-                    scope.tree = getTree(data, 'id', 'parentId');
+                    if (scope.type=='tree'){    
+                        scope.tree = getTree(data, 'id', 'parentId');
+                    }
 
 
                 });
@@ -335,7 +337,11 @@ angular.module('ngTemplateTable', ['ui.bootstrap', 'ngSanitize', 'nsPopover', 'a
 
                 }, true);
                 var data = angular.copy(scope.data);
-                scope.tree = getTree(data, 'id', 'parentId');
+
+                if (scope.type=='tree'){    
+                    scope.tree = getTree(data, 'id', 'parentId');
+                }
+                
                 scope.$watch('type', function () {
                     if (scope.type == 'table' || scope.type == 'tree') {
                         scope.renderTable();
