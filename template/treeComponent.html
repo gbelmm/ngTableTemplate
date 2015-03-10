@@ -18,7 +18,21 @@
 
            class="indented tree-icon"></i>
     </a><span class="indented tree-label" ng-click="user_clicks_branch(row.branch)">
-        {{row.branch[expandingProperty]}}</span>
+
+
+        <p ng-switch-when="text" class="{{col.colType}}">{{ row.branch[expandingProperty] }} <i ng-show="col.colType=='ngtemplate-percentage'">%</i></p>
+
+        <p ng-switch-when="date" class="{{col.colType}}">{{ row.branch[expandingProperty] }} </p>
+
+        <p  ng-switch-when="html" class="{{col.colType}}" ng-type-html="" content="row.branch[expandingProperty]" > </p>
+
+        <p  ng-switch-when="customhtml" class="{{col.colType}}" ng-type-html="" content="col.customHTML" > </p>
+
+        <p ng-switch-when="sparkline"  class="{{col.colType}}" sparkline="" data="row.branch[expandingProperty]" > </p>
+
+        <p  ng-switch-default class="{{col.colType}}" ng-type type="col.type" data="row.branch[expandingProperty]" > </p>
+
+    </span>
     </td>
     <td ng-if="col.field!==expandingProperty"   ng-show="col.inTree"  ng-repeat="col in colDefinitions" ng-switch on="col.type">
 
