@@ -91,16 +91,18 @@
     <div class="col-lg-12">
 
         <ng-template-table
-             icon-expand="glyphicon glyphicon-plus"
-             icon-collapse="glyphicon glyphicon-minus"
-             icon-leaf="glyphicon glyphicon-file"
-             type="tipo"
-             model="data"
-             column="column"
-             order="true"
-             search="true"
-             paginate="true"
-             numperpage="5"
+                expand-on="'Áreas'"
+                actions="acciones"
+                model='data'
+                column='column'
+                type="tipo"
+                order="true"
+                search="true"
+                paginate="true"
+                numperpage="20"
+                icon-expand="fa fa-caret-right"
+                icon-collapse="fa fa-caret-down"
+                icon-leaf="fa"
          >
 
         </ng-template-table>
